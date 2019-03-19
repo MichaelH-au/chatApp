@@ -18,6 +18,6 @@ public class ServerInitialization extends ChannelInitializer<SocketChannel> {
         // add handler
         channelPipeline.addLast("HttpServerCodec", new HttpServerCodec());
 
-        channelPipeline.addLast("customHandler", null);
+        channelPipeline.addLast("customHandler", new CustomHandler());
     }
 }

@@ -28,7 +28,7 @@ public class App
             ServerBootstrap serverBootstrap = new ServerBootstrap();
             serverBootstrap.group(masterGroup, slaveGroup)
                     .channel(NioServerSocketChannel.class)
-                    .childHandler(null);
+                    .childHandler(new ServerInitialization());
 
             // start server set port number
             ChannelFuture channelFuture = serverBootstrap.bind(8088).sync();
@@ -36,7 +36,7 @@ public class App
             channelFuture.channel().closeFuture().sync();
 
         }catch (Exception e) {
-
+            System.out.println(e);
         }
         finally {
             masterGroup.shutdownGracefully();
