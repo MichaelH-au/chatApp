@@ -35,7 +35,10 @@ public class App
             // listen channel close
             channelFuture.channel().closeFuture().sync();
 
-        } finally {
+        }catch (Exception e) {
+
+        }
+        finally {
             masterGroup.shutdownGracefully();
             slaveGroup.shutdownGracefully();
         }
