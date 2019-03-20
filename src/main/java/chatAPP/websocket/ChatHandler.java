@@ -19,13 +19,13 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, TextWebSocketFrame textWebSocketFrame) throws Exception {
         String content = textWebSocketFrame.text();
-        System.out.println("data: " + content);
+        System.out.println("receive data: " + content);
 
-        for (Channel channel: clients) {
-            channel.writeAndFlush(new TextWebSocketFrame("[server received]" + LocalDateTime.now() + ", content:" + content));
-        }
-        // same with the for loop
-//        clients.writeAndFlush(new TextWebSocketFrame("same"));
+//        for (Channel channel: clients) {
+//            channel.writeAndFlush(new TextWebSocketFrame("[server received]" + LocalDateTime.now() + ", content:" + content));
+//        }
+//         same with the for loop
+        clients.writeAndFlush(new TextWebSocketFrame("[server received]" + LocalDateTime.now() + ", content:" + content));
     }
 
     /**

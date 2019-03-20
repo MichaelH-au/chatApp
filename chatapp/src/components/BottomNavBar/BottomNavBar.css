@@ -1,0 +1,19 @@
+.bottomNavBarContainer{
+    height:55px;
+    background-color: #F2F2F2;
+    border: 1px solid #E5E5E5	;
+;
+}
+.BottomNavIcon{
+    font-size: 25px;
+    color: grey;
+}
+
+.BottomNavName{
+    font-size: 12px;
+    color: grey;
+}
+
+.tabActive{
+    color: green;
+}

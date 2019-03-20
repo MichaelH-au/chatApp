@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import "./Main.css"
 
 class Index extends Component {
     constructor(props) {
@@ -44,18 +45,20 @@ class Index extends Component {
 
     render() {
         return (
-            <div className="d-flex justify-content-around align-items-center flex-column" style={{height:"100vh"}}>
-                <div>
-                    <div>Send message</div>
-                    <input type="text" name="msgContent" value={this.state.message} onChange={(e) => this.changeHendler('message', e.target.value)}/>
-                    <button className="btn btn-success" onClick={() => this.sendMsg()}>Send</button>
-                </div>
+            <div className='container'>
+                <div className="d-flex justify-content-around align-items-center flex-column bg-info h-100 p-0">
+                    <div>
+                        <div>Send message</div>
+                        <input type="text" name="msgContent" value={this.state.message} onChange={(e) => this.changeHendler('message', e.target.value)}/>
+                        <button className="btn btn-success" onClick={() => this.sendMsg()}>Send</button>
+                    </div>
 
-                <div>
-                    <div>receive message</div>
-                    <div>{this.state.receivedMessage}</div>
-                    {/*<input type="text" name="msgContent"/>*/}
-                    {/*<button className="btn btn-success">Send</button>*/}
+                    <div>
+                        <div>receive message</div>
+                        <div>{this.state.receivedMessage}</div>
+                        {/*<input type="text" name="msgContent"/>*/}
+                        {/*<button className="btn btn-success">Send</button>*/}
+                    </div>
                 </div>
             </div>
         );
