@@ -31,6 +31,6 @@ public class WSServerInitialization extends ChannelInitializer<SocketChannel> {
         channelPipeline.addLast(new WebSocketServerProtocolHandler("/ws"));
 
         // customize handler
-        channelPipeline.addLast(null);
+        channelPipeline.addLast(new ChatHandler());
     }
 }
