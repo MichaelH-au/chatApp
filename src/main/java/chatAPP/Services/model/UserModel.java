@@ -1,11 +1,17 @@
 package chatAPP.Services.model;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class UserModel {
     private Integer id;
+    @NotBlank(message = "username cannot be empty.")
     private String username;
+    @NotBlank(message = "password cannot be empty.")
     private String password;
     private String face_image;
     private String face_image_big;
+    @NotBlank(message = "nickname cannot be empty.")
     private String nickname;
 
     public Integer getId() {
