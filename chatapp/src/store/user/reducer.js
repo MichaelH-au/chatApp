@@ -13,7 +13,7 @@ const defaultState = {
 }
 
 export default function Users(state = defaultState, action) {
-    switch (action.typeof) {
+    switch (action.type) {
         case LOGIN_SUCCESS:
             return {...state, ...action.payload, isLogin: true}
         case ERROR_MSG:

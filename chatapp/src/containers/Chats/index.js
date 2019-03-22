@@ -1,7 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import { login } from "../../store/user/actions";
 
 class MyComponent extends Component {
+    componentDidMount() {
+        this.props.login('user', 'password')
+    }
     render() {
         return (
             <div className='container'>
@@ -17,6 +21,8 @@ function mapStateToProps(state) {
     };
 }
 
+const actionCreators = { login }
+
 export default connect(
-    mapStateToProps,
+    mapStateToProps, actionCreators
 )(MyComponent);

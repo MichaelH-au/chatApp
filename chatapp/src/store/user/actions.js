@@ -17,7 +17,7 @@ export function login(username, password) {
     if (!password) {
         return dispatch => dispatch(errorMsg("Password should not be empty"))
     }
-
+    console.log(username,password)
     return dispatch => {
         axios.post('/user/login', {username, password})
             .then(res => {

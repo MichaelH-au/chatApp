@@ -2,10 +2,12 @@ package chatAPP.controllers;
 
 import chatAPP.Services.UserService;
 import chatAPP.Services.model.UserModel;
+import chatAPP.controllers.requestObject.userRO;
 import chatAPP.controllers.viewObject.UserVO;
 import chatAPP.error.BusinessException;
 import chatAPP.error.EmBusinessError;
 import chatAPP.response.CommonReturnTrye;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -16,6 +18,7 @@ import java.awt.*;
 
 @RestController("user")
 @RequestMapping("/user")
+//@CrossOrigin(allowCredentials = "true", allowedHeaders = "*")
 public class UserController extends BaseController {
 
     @Autowired
@@ -34,9 +37,13 @@ public class UserController extends BaseController {
         return CommonReturnTrye.create("Register successfully");
     }
 
-    @PostMapping("/login")
-    public CommonReturnTrye login(@RequestParam(required=false,name="username") String username,
-                                  @RequestParam(required=false,name="password") String password) throws BusinessException{
+    @PostMapping(value = "/login",consumes = "application/json")
+    public CommonReturnTrye login(@RequestBody userRO userRO) throws BusinessException{
+        String username = userRO.getUsername();
+        String password = userRO.getPassword();
+        if (StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
+            throw new BusinessException(EmBusinessError.INVALID_USERNAME_OR_PASSWORD);
+        }
         UserModel userModel = userService.getUserByUsername(username, DigestUtils.md5DigestAsHex(password.getBytes()));
 
         if (userModel == null) {
