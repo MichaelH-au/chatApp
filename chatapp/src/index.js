@@ -16,12 +16,14 @@ import Chats from './containers/Chats'
 import Contacts from './containers/Contacts'
 import Discover from './containers/Discover'
 import Me from './containers/Me'
+import Login from './containers/Login'
 
 
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
             <div>
+
                 <Switch>
                     <Route path='/' exact component={Test}></Route>
                 </Switch>
@@ -36,6 +38,9 @@ ReactDOM.render(
                 </Switch>
                 <Switch>
                     <Route path='/me' exact component={Me}></Route>
+                </Switch>
+                <Switch>
+                    <Route path='/login' exact component={Login}></Route>
                 </Switch>
                 <BottomNavBar/>
             </div>

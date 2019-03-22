@@ -8,14 +8,14 @@ const defaultState = {
     face_image_big: '',
     nickname: '',
     qrcode: '',
-    isLogin: false,
+    isAuth: false,
     errMsg: ''
 }
 
 export default function Users(state = defaultState, action) {
     switch (action.type) {
         case LOGIN_SUCCESS:
-            return {...state, ...action.payload, isLogin: true}
+            return {...state, ...action.payload, isAuth: true}
         case ERROR_MSG:
             return {...state, errMsg: action.errMsg}
         default:
