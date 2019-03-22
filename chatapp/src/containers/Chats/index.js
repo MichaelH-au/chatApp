@@ -1,13 +1,22 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
-class Index extends Component {
+class MyComponent extends Component {
     render() {
         return (
             <div className='container'>
-                Chats
+                {this.props.user.username}
             </div>
         );
     }
 }
 
-export default Index;
+function mapStateToProps(state) {
+    return {
+        user: state.user
+    };
+}
+
+export default connect(
+    mapStateToProps,
+)(MyComponent);
