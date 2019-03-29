@@ -1,12 +1,15 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { login } from "../../store/user/actions";
+import { pageChange } from "../../store/header/actions";
 import { Redirect } from 'react-router-dom'
 
 class MyComponent extends Component {
+
     componentDidMount() {
-        // this.props.login('user', 'password')
+        this.props.pageChange("Login")
     }
+
     render() {
         return (
             <div className='container'>
@@ -24,7 +27,7 @@ function mapStateToProps(state) {
     };
 }
 
-const actionCreators = { login }
+const actionCreators = { login, pageChange }
 
 export default connect(
     mapStateToProps, actionCreators

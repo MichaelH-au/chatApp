@@ -17,13 +17,13 @@ import Contacts from './containers/Contacts'
 import Discover from './containers/Discover'
 import Me from './containers/Me'
 import Login from './containers/Login'
-
+import Header from './components/Header'
 
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
             <div>
-
+                <Header/>
                 <Switch>
                     <Route path='/' exact component={Test}></Route>
                 </Switch>

@@ -1,13 +1,25 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import { pageChange } from "../../store/header/actions";
 
-class Index extends Component {
+class MyComponent extends Component {
+    componentDidMount() {
+        this.props.pageChange("Discover")
+    }
     render() {
         return (
-            <div className='container'>
-                Discover
+            <div className="container">
+
             </div>
         );
     }
 }
 
-export default Index;
+function mapStateToProps(state) {
+    return {};
+}
+const actionCreators = {  pageChange }
+
+export default connect(
+    mapStateToProps, actionCreators
+)(MyComponent);

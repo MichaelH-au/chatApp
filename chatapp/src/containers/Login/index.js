@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { Redirect }from 'react-router-dom'
 import { login } from "../../store/user/actions";
+import { pageChange } from "../../store/header/actions";
 import './style.css'
 
 
@@ -22,6 +23,10 @@ class Login extends Component {
 
     login() {
         this.props.login(this.state.username,)
+    }
+
+    componentDidMount() {
+        this.props.pageChange("Login")
     }
 
     render() {
@@ -61,7 +66,7 @@ function mapStateToProps(state) {
     };
 }
 
-const actionCreators = { login }
+const actionCreators = { login, pageChange }
 
 export default connect(
     mapStateToProps, actionCreators
