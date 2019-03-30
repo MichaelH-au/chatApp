@@ -1,0 +1,19 @@
+.avatar {
+    height: 60px;
+    border-top: 1px solid #E8E8E8;
+    border-bottom: 2px solid #E8E8E8;
+    background-color: white;
+}
+
+.infoBox {
+    height: 50px;
+    border-bottom: 2px solid #E8E8E8;
+    background-color: white;
+
+}
+
+.logout{
+    height: 60px;
+    border: 1px solid #E8E8E8;
+    background-color: white;
+}

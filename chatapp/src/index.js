@@ -18,6 +18,7 @@ import Discover from './containers/Discover'
 import Me from './containers/Me'
 import Login from './containers/Login'
 import Header from './components/Header'
+import MyAvatar from './containers/MyAvatar'
 
 ReactDOM.render(
     <Provider store={store}>
@@ -41,6 +42,9 @@ ReactDOM.render(
                 </Switch>
                 <Switch>
                     <Route path='/login' exact component={Login}></Route>
+                </Switch>
+                <Switch>
+                    <Route path='/MyAvatar' exact component={MyAvatar}></Route>
                 </Switch>
                 <BottomNavBar/>
             </div>

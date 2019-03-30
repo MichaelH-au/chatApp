@@ -22,6 +22,8 @@ export function login(username, password) {
         axios.post('/user/login', {username, password})
             .then(res => {
                 if (res.data.status === 'success') {
+                    console.log('---')
+                    console.log(res.data.data)
                     dispatch(loginSuccess(res.data.data))
                 } else {
                     dispatch(errorMsg("Invalid username or password"))

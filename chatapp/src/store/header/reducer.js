@@ -2,8 +2,8 @@ import { PAGE_CHANGE } from "./constants";
 
 const defaultState = {
     title: 'Chat',
-    returnPath: '',
-    leftButton: false
+    leftButton: null,
+    rightButton: null
 }
 
 export default function Users(state = defaultState, action) {

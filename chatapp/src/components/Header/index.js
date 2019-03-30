@@ -8,9 +8,19 @@ class MyComponent extends Component {
         return (
             <div className="headerContainer">
                 <div className="row text-center align-items-center justify-content-center h-100">
-                    <div className="col-2">{"<"}</div>
+                    {this.props.headerNav.leftButton
+                        ?
+                        <div className="col-2">{this.props.headerNav.leftButton}</div>
+                        :
+                        <div className="col-2"></div>
+                    }
                     <div className="col-8">{this.props.headerNav.title}</div>
-                    <div className="col-2"></div>
+                    {this.props.headerNav.rightButton
+                        ?
+                        <div className="col-2">{this.props.headerNav.rightButton}</div>
+                        :
+                        <div className="col-2"></div>
+                    }
                 </div>
             </div>
         );

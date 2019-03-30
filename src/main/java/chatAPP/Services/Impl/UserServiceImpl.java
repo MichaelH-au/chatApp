@@ -73,6 +73,7 @@ public class UserServiceImpl implements UserService {
         }
         UserModel userModel = new UserModel();
         BeanUtils.copyProperties(user, userModel);
+        userModel.setFace_image(user.getFaceImage());
         return userModel;
     }
 }
