@@ -3,7 +3,8 @@ import {connect} from 'react-redux';
 import ReactCrop from 'react-image-crop'
 import { pageChange } from "../../store/header/actions";
 import { Link } from 'react-router-dom'
-import {base64StringtoFile, image64toCanvasRef} from "../../Utils/resuableUtils";
+import {base64StringtoFile, extractImageFileExtensionFromBase64, image64toCanvasRef} from "../../Utils/resuableUtils";
+import axios from 'axios'
 
 import 'react-image-crop/dist/ReactCrop.css';
 import './myAvatar.css'
@@ -67,9 +68,25 @@ class MyComponent extends Component {
 
     saveAvatar = () => {
         const {imgSrc} = this.state
-        const fileName = "new_file"
-        const myNewCroppedFile = base64StringtoFile(imgSrc, fileName)
+        const fileExtension = extractImageFileExtensionFromBase64(imgSrc)
+        const fileName = "new_file11." + fileExtension
+        console.log(fileExtension)
+        const imageData64 = this.imagePreviewCanvasRef.current.toDataURL('image/' + fileExtension)
+        const myNewCroppedFile = base64StringtoFile(imageData64, fileName)
         console.log(myNewCroppedFile)
+
+        const param = new FormData()
+        param.append('file', myNewCroppedFile)
+        param.append('userId', "123")
+
+        const config = {
+            headers: { 'Content-Type': 'multipart/form-data' }
+        }
+        axios.post('/user/updateAvatar', param, config)
+            .then(value => {
+                console.log(value)
+            })
+
     }
 
     componentDidMount() {

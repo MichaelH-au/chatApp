@@ -13,8 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 @RestController("user")
 @RequestMapping("/user")
@@ -52,6 +55,37 @@ public class UserController extends BaseController {
 
         UserVO userVO = convertFromUserModel(userModel);
         return CommonReturnTrye.create(userVO);
+    }
+
+    @RequestMapping(value = "/updateAvatar",method = RequestMethod.POST)
+    public String file(@RequestParam("file") MultipartFile file,
+                       @RequestParam("userId") String userId) throws IOException {
+
+        if (file.isEmpty()) {
+            return "文件为空";
+        }
+        System.out.println(userId);
+
+        String UPLOADED_FOLDER = "/Users/ransheng/Documents/Java/chatApp/src/main/resources/upload/";
+        File path = new File(UPLOADED_FOLDER + file.getOriginalFilename());
+        try{
+            byte[] fileSize = file.getBytes();
+            file.transferTo(path);
+            return "上传成功";
+        }catch (IllegalStateException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "上传失败";
+
+
+
+    }
+
+    @GetMapping(value = "/{name}")
+    public void getByName(@PathVariable final String name) {
+
     }
 
     private UserVO convertFromUserModel(UserModel userModel) {
