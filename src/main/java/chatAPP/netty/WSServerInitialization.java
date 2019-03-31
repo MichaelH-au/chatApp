@@ -7,6 +7,7 @@ import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpServerCodec;
 import io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler;
 import io.netty.handler.stream.ChunkedWriteHandler;
+import io.netty.handler.timeout.IdleStateHandler;
 
 public class WSServerInitialization extends ChannelInitializer<SocketChannel> {
     @Override
@@ -32,5 +33,12 @@ public class WSServerInitialization extends ChannelInitializer<SocketChannel> {
 
         // customize handler
         channelPipeline.addLast(new ChatHandler());
+
+        // heart listener start
+        channelPipeline.addLast(new IdleStateHandler(20, 40, 60));
+
+        channelPipeline.addLast(new HeartBeatHandler());
+
+        // heart listener end
     }
 }
