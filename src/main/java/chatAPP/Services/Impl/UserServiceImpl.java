@@ -4,9 +4,11 @@ import chatAPP.Services.UserService;
 import chatAPP.Services.model.UserModel;
 import chatAPP.error.BusinessException;
 import chatAPP.error.EmBusinessError;
+import chatAPP.mapper.ChatMsgMapper;
 import chatAPP.mapper.UsersMapper;
 import chatAPP.model.Users;
 import chatAPP.model.UsersExample;
+import chatAPP.netty.ChatMsg;
 import chatAPP.validator.ValidationResult;
 import chatAPP.validator.ValidatorImpl;
 import org.apache.commons.lang3.StringUtils;
@@ -17,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -24,6 +27,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UsersMapper usersMapper;
+
+    @Autowired
+    private ChatMsgMapper chatMsgMapper;
 
     @Autowired
     private ValidatorImpl validator;
@@ -56,6 +62,21 @@ public class UserServiceImpl implements UserService {
 
         List<Users> users = usersMapper.selectByExample(usersExample);
         return convertFromDataObject(users.get(0));
+    }
+
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    @Override
+    public String saveMsg(ChatMsg chatMsg) {
+        chatAPP.model.ChatMsg msgDB = new chatAPP.model.ChatMsg();
+        msgDB.setSender(Integer.parseInt(chatMsg.getSenderId()));
+        msgDB.setReceiver(Integer.parseInt(chatMsg.getReceiverId()));
+        msgDB.setCreateAt(new Date());
+        msgDB.setSignFlag(0);
+        msgDB.setMsg(chatMsg.getMsg());
+
+        Integer msgId = chatMsgMapper.insertSelective(msgDB);
+        return msgDB.getId().toString();
     }
 
     private Users convertFromModel(UserModel userModel) {
