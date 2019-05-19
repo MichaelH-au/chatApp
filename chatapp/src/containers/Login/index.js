@@ -35,6 +35,7 @@ class Login extends Component {
                 {this.props.user.isAuth ? <Redirect to='/chats'></Redirect> : null}
                 <div className='d-flex justify-content-center align-items-center flex-column h-100 p-0 w-100'>
                     <img style={{width:'300px'}} src="http://www.stickpng.com/assets/images/580b57fcd9996e24bc43c542.png" alt=""/>
+                    <div>{this.props.user.errMsg}</div>
                     <div className='mt-4'>
                         <div>
                             <input type="text" placeholder='username'

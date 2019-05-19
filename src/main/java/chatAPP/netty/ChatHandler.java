@@ -55,6 +55,7 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
             // default name of bean
             UserService userService = (UserService) SpringUtil.getBean("userServiceImpl");
             String msgId = userService.saveMsg(chatMsg);
+            System.out.println("------------" + msgId + "-------");
             chatMsg.setMsgId(msgId);
 
             // forward message
@@ -68,6 +69,7 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
                     receiverChannel.writeAndFlush(new TextWebSocketFrame(JsonUtils.objectToJson(chatMsg)));
                 } else {
                     // user offline push notification
+                    System.out.println("notification");
                 }
             }
 

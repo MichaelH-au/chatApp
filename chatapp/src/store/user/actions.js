@@ -26,6 +26,7 @@ export function login(username, password) {
                     console.log(res.data.data)
                     dispatch(loginSuccess(res.data.data))
                 } else {
+                    console.log(res.data)
                     dispatch(errorMsg("Invalid username or password"))
                 }
             })
