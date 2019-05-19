@@ -29,7 +29,7 @@ public class UserController extends BaseController {
     @Autowired
     UserService userService;
 
-    @PostMapping("/register")
+    @PostMapping("")
     public CommonReturnTrye register(@RequestParam(required=false,name="username") String username,
                                      @RequestParam(required=false,name="password") String password,
                                      @RequestParam(required=false,name="nickname") String nickname) throws BusinessException {
