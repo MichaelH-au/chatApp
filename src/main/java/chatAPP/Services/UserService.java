@@ -5,6 +5,8 @@ import chatAPP.error.BusinessException;
 import chatAPP.netty.ChatMsg;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface UserService {
     void register(UserModel userModel) throws BusinessException;
@@ -13,4 +15,6 @@ public interface UserService {
 
     // save chatMsg to DB
     public String saveMsg(ChatMsg chatMsg);
+
+    List<UserModel> searchByName(String username) throws BusinessException;
 }

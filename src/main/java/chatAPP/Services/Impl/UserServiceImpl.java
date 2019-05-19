@@ -21,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -77,6 +78,19 @@ public class UserServiceImpl implements UserService {
 
         Integer msgId = chatMsgMapper.insertSelective(msgDB);
         return msgDB.getId().toString();
+    }
+
+    @Override
+    public List<UserModel> searchByName(String username) throws BusinessException {
+        UsersExample usersExample = new UsersExample();
+        UsersExample.Criteria criteria = usersExample.createCriteria();
+        criteria.andUsernameEqualTo(username);
+
+        List<Users> usersList = usersMapper.selectByExample(usersExample);
+        List<UserModel> userModels = usersList.stream().map((user) -> {
+            return convertFromDataObject(user);
+        }).collect(Collectors.toList());
+        return userModels;
     }
 
     private Users convertFromModel(UserModel userModel) {

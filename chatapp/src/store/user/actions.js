@@ -19,7 +19,7 @@ export function login(username, password) {
     }
     console.log(username,password)
     return dispatch => {
-        axios.post('/user/login', {username, password})
+        axios.post('/users/login', {username, password})
             .then(res => {
                 if (res.data.status === 'success') {
                     console.log('---')

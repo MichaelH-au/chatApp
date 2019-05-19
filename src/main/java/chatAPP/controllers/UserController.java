@@ -18,9 +18,11 @@ import org.springframework.web.multipart.MultipartFile;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController("user")
-@RequestMapping("/user")
+@RequestMapping("/users")
 //@CrossOrigin(allowCredentials = "true", allowedHeaders = "*")
 public class UserController extends BaseController {
 
@@ -84,8 +86,12 @@ public class UserController extends BaseController {
     }
 
     @GetMapping(value = "/{name}")
-    public void getByName(@PathVariable final String name) {
-
+    public CommonReturnTrye getByName(@PathVariable final String name) throws BusinessException {
+        List<UserModel> userModelList = userService.searchByName(name);
+        List<UserVO> userVOList = userModelList.stream().map((user) -> {
+            return convertFromUserModel(user);
+        }).collect(Collectors.toList());
+        return CommonReturnTrye.create(userVOList,"succ");
     }
 
     private UserVO convertFromUserModel(UserModel userModel) {
