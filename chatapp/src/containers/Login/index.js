@@ -25,6 +25,7 @@ class Login extends Component {
         this.props.login(this.state.username,)
     }
 
+
     componentDidMount() {
         this.props.pageChange("Login")
     }

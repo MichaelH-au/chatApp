@@ -19,6 +19,7 @@ import Me from './containers/Me'
 import Login from './containers/Login'
 import Header from './components/Header'
 import MyAvatar from './containers/MyAvatar'
+import AddContacts from './containers/addUser'
 
 ReactDOM.render(
     <Provider store={store}>
@@ -33,6 +34,9 @@ ReactDOM.render(
                 </Switch>
                 <Switch>
                     <Route path='/contacts' exact component={Contacts}></Route>
+                </Switch>
+                <Switch>
+                    <Route path='/addContacts' exact component={AddContacts}></Route>
                 </Switch>
                 <Switch>
                     <Route path='/discover' exact component={Discover}></Route>

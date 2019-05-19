@@ -26,13 +26,13 @@ class Index extends Component {
                         <i className={`iconfont BottomNavIcon ${this.state.index === 0 ? 'icon-wechat2 tabActive' : 'icon-wechat'}`}></i>
                         <div className={`BottomNavName ${this.state.index === 0 ? 'tabActive' : ''}`}>Chats</div>
                     </Link>
-                    <Link to='contacts' className='col-3 text-center text-decoration-none'
+                    <Link to='/contacts' className='col-3 text-center text-decoration-none'
                           onClick={() => this.changeHandler('index',1)}
                     >
                         <i className={`iconfont BottomNavIcon ${this.state.index === 1 ? 'icon-icon-contacts tabActive' : 'icon-icon-contacts-o'}`}></i>
                         <div className={`BottomNavName ${this.state.index === 1 ? 'tabActive' : ''}`}>Contacts</div>
                     </Link>
-                    <Link to='discover' className='col-3 text-center text-decoration-none'
+                    <Link to='/discover' className='col-3 text-center text-decoration-none'
                           onClick={() => this.changeHandler('index',2)}
                     >
                         <i className={`iconfont BottomNavIcon ${this.state.index === 2 ? 'icon-faxian tabActive' : 'icon-discover'}`}></i>

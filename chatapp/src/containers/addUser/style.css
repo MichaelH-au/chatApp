@@ -1,0 +1,18 @@
+.searchInputIcon {
+    position: absolute;
+    top: 12px;
+    left: 0;
+    z-index: 2;
+    font-size: 16px;
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+.searchIcon{
+    background-color: #66cc66;
+    border-radius: 5px;
+    height: 40px;
+    line-height: 40px;
+}
